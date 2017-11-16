@@ -123,6 +123,11 @@ class Category extends Model
     }
 
 
+    public function all_posts(){
+      return $this->hasMany('App\Models\Post');
+    }
+
+
     /**
      * @override boot function in order to fire up model events
      * creating, created, update, deleting ...
@@ -134,7 +139,7 @@ class Category extends Model
         static::deleting(function($category){
             try {
                 $category->mediaTypes()->sync([]);
-                $category->posts()->each(function($post){
+                $category->all_posts()->each(function($post){
                     try{
                         $post->category()->dissociate();
                     }catch(Exception $e){

@@ -24,7 +24,7 @@ class UpdateCategory extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:5|unique:categories,name',
+            'name' => 'required|min:5',
             'mediatype_id' => 'required'
         ];
     }

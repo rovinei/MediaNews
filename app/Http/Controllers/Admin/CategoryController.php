@@ -76,11 +76,15 @@ class CategoryController extends Controller
 
         // Determine if category exists
         try{
-            $category = Category::firstOrFail($category_id);
+            $category = Category::findOrFail($category_id);
             $category->updatedBy()->associate(Auth::user());
             $category->mediaTypes()->sync(explode(',', $request->mediatype_id));
             $category->update($request->all());
-        }catch(Exception $e){
+        }catch(ModelNotFoundException $e){
+            Session::flash('error_message', 'Cannot find category');
+            return redirect()->back();
+        }
+        catch(Exception $e){
             Session::flash('error_message', 'Error while updating category, Please try again!');
             return redirect()->back();
         }

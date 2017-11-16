@@ -17,9 +17,11 @@
                 <div class="divider"></div>
 
                 <div class="post-grid__meta">
+                    @if($video->category != null)
                     <span class="post-grid__category font-kh-hanuman">
                         {{ $video->category->name }}
                     </span>
+                    @endif
                     <span class="post-grid__datetime">
                         {{ $video->created_at->diffForHumans() }}
                     </span>
@@ -29,3 +31,4 @@
     </div>
 </div>
 @endif
+

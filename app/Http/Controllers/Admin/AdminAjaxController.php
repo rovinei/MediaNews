@@ -259,7 +259,7 @@ class AdminAjaxController extends Controller
                         "status" => 505,
                         "error" => [
                             "code" => 505,
-                            "message" => "Error while trying to delete category"
+                            "message" => $e->getMessage()
                         ]
                     ]);
                 }

@@ -114,6 +114,7 @@ class PageController extends Controller
 
         // Find category by id
         try{
+            $category = Category::findOrFail($category_id);
             $articles = Post::where([
                                 ['mediatype_id', 1],
                                 ['status', 1],
@@ -128,7 +129,9 @@ class PageController extends Controller
                                 ])
                                 ->take(4)
                                 ->get();
-            $category_name = $articles[0]->category->name;
+            if($articles->exists()){
+                $category_name = $articles[0]->category->name;
+            }
         }catch(ModelNotFoundException $e){
             return view('errors.404')->with('exception', 'Oop! you have requested the resource that does not exists.\n We may considered create something new for you :D');
         }

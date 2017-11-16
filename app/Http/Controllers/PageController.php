@@ -129,9 +129,8 @@ class PageController extends Controller
                                 ])
                                 ->take(4)
                                 ->get();
-            if($articles->exists()){
-                $category_name = $articles[0]->category->name;
-            }
+            $category_name = $category->name;
+
         }catch(ModelNotFoundException $e){
             return view('errors.404')->with('exception', 'Oop! you have requested the resource that does not exists.\n We may considered create something new for you :D');
         }
@@ -289,7 +288,8 @@ class PageController extends Controller
                                 ])
                                 ->take(8)
                                 ->get();
-            $category_name = $videos[0]->category->name;
+
+            $category_name = $category->name;
         }catch(ModelNotFoundException $e){
             return view('errors.404')->with('exception', 'Oop! you have requested the resource that does not exists.\n We may considered create something new for you :D');
         }

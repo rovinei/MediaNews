@@ -16,7 +16,9 @@
                 </div>
                 <div>
                     <span class="meta">
+                    @if($video->category != null)
                         {{ $video->category->name }}
+                    @endif
                     </span>
                 </div>
             </div>

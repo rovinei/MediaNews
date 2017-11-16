@@ -16,8 +16,12 @@
                         <h3 class="font-kh-nokora uk-margin-remove yellow">
                             <i class="fa fa-play"></i>
                             <a href="{{ route('visitor.video.page') }}">@lang('visitor.video')</a>
+                            @if($video->category != null)
                             <i class="fa fa-angle-double-right"></i>
-                            <a href="{{ route('visitor.video.category', $video->category->id) }}">{{ $video->category->name }}</a>
+                            <a href="{{ route('visitor.video.category', $video->category->id) }}">
+                                {{ $video->category->name }}
+                            </a>
+                            @endif
                         </h3>
                     </div>
 
